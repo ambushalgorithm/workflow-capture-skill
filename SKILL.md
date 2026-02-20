@@ -1,21 +1,21 @@
 ---
 name: workflow-capture
-description: Monitors conversations for reusable workflows and prompts to create skills when patterns emerge. Use when (1) a similar task is performed 2-3+ times, (2) a reusable automation pattern becomes evident, (3) Guillermo asks about making something a skill, or (4) we discuss creating a new skill.
+description: Detects recurring workflows and prompts to create skills when reusable patterns emerge. Use when (1) similar tasks are performed repeatedly, (2) automation patterns become evident, (3) discussing skill creation, or (4) any multi-step process that could be templated.
 ---
 
 # Workflow Capture
 
 ## Overview
 
-Identifies recurring workflows in our sessions and prompts to capture them as reusable skills. Helps maintain skill hygiene by catching patterns early.
+Monitors conversations to identify reusable workflows and prompts when it makes sense to capture them as skills. Helps maintain skill hygiene by catching patterns early.
 
 ## When to Trigger
 
-This skill should activate when:
+This skill activates when:
 
-1. **Repetition detected**: We do the same/similar task 2-3+ times across sessions
-2. **Pattern emerges**: A multi-step workflow becomes routine
-3. **Explicit query**: Guillermo asks "should we make this a skill?" or discusses skill creation
+1. **Repetition detected**: The same or similar task is performed 2-3+ times
+2. **Pattern emerges**: A multi-step workflow becomes routine or recurring
+3. **Skill discussion**: Any conversation about creating or improving skills
 4. **Reusable automation**: Any workflow that could be templated or scripted
 
 ## How It Works
@@ -23,38 +23,38 @@ This skill should activate when:
 ### 1. Detection
 
 Track these signals:
-- Repeated file operations (same scripts, similar edits)
+- Repeated operations (file edits, commands, configurations)
 - Recurring multi-step processes
-- Guillermo explicitly asking about skills
-- Any workflow with 3+ steps that we've done before
+- Explicit mentions of skill creation
+- Any workflow with 3+ steps that could be generalized
 
 ### 2. Suggestion Format
 
-When a pattern is detected, prompt Guillermo with:
+When a pattern is detected, prompt with:
 
 ```
 🔄 Workflow Detected: [brief description]
-- Seen: [count] times across [sessions/dates]
-- Why it's useful: [1-line rationale]
-→ Should I create a skill for this? (Y/n)
+- Seen: [count] times
+- Why useful: [1-line rationale]
+→ Create a skill? (Y/n)
 ```
 
 ### 3. Skill Creation Flow
 
-If Guillermo agrees:
+If agreed:
 
 1. Use **skill-creator** skill to initialize
-2. Ask Guillermo for concrete examples of how they'd use it
+2. Ask for concrete examples of usage
 3. Identify reusable components (scripts, references, assets)
-4. Scaffold the skill with `init_skill.py`
+4. Scaffold with `init_skill.py`
 5. Write SKILL.md with clear triggers and usage
 6. Package with `package_skill.py`
 
 ## Example Suggestions
 
-- "We've pushed to 3 different repos the same way — want a `git-multi-push` skill?"
-- "This is the 4th time we set up a cron job together — skill?"
-- "We're building a skill together — want to save this pattern?"
+- "Pushed to 3 repos the same way — skill for multi-repo git operations?"
+- "Set up cron jobs repeatedly — skill for cron job templates?"
+- "Building similar skills — save this pattern?"
 
 ## Notes
 
